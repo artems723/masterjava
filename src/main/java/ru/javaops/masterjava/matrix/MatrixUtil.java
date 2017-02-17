@@ -23,15 +23,41 @@ public class MatrixUtil {
         final int matrixSize = matrixA.length;
         final int[][] matrixC = new int[matrixSize][matrixSize];
 
-        for (int i = 0; i < matrixSize; i++) {
-            for (int j = 0; j < matrixSize; j++) {
+//        int matrixBT[][] = create(matrixSize);
+//        for (int i =0; i < matrixSize; i++) {
+//            for (int j = 0; j < matrixSize; j++) {
+//                matrixBT[j][i] = matrixB[i][j];
+//            }
+//        }
+//
+//        for (int i = 0; i < matrixSize; i++) {
+//            for (int j = 0; j < matrixSize; j++) {
+//                int sum = 0;
+//                for (int k = 0; k < matrixSize; k++) {
+////                    sum += matrixA[i][k] * matrixB[k][j];
+//                    sum += matrixA[i][k] * matrixBT[j][k];
+//                }
+//                matrixC[i][j] = sum;
+//            }
+//        }
+
+        int thatColumn[] = new int[matrixSize];
+
+        for (int j=0; j<matrixSize; j++) {
+            for (int k=0; k<matrixSize; k++) {
+                thatColumn[k] = matrixB[k][j];
+            }
+
+            for (int i=0; i<matrixSize; i++) {
+                int thisRow[] = matrixA[i];
                 int sum = 0;
-                for (int k = 0; k < matrixSize; k++) {
-                    sum += matrixA[i][k] * matrixB[k][j];
+                for (int k=0; k<matrixSize; k++) {
+                    sum += thisRow[k] * thatColumn[k];
                 }
                 matrixC[i][j] = sum;
             }
         }
+
         return matrixC;
     }
 
